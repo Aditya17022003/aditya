@@ -1,109 +1,467 @@
-!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="utf-8" />
-  <title>Swiper demo</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" />
-  <!-- Link Swiper's CSS -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
-
-  <!-- Demo styles -->
-  <style>
-    html,
-    body {
-      position: relative;
-      height: 100%;
-    }
-
-    body {
-      background: #eee;
-      font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
-      font-size: 14px;
-      color: #000;
-      margin: 0;
-      padding: 0;
-    }
-
-    .swiper {
-      width: 100%;
-      padding-top: 50px;
-      padding-bottom: 50px;
-    }
-
-    .swiper-slide {
-      background-position: center;
-      background-size: cover;
-      width: 300px;
-      height: 300px;
-    }
-
-    .swiper-slide img {
-      display: block;
-      width: 100%;
-    }
-  </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="style.css">
+  <link
+  href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css"
+  rel="stylesheet"
+/>
 </head>
-
 <body>
-  <!-- Swiper -->
-  <div class="swiper mySwiper">
-    <div class="swiper-wrapper">
-      <div class="swiper-slide">
-        <img src="https://swiperjs.com/demos/images/nature-1.jpg" />
+
+  <header class="header">
+    
+      <a href="#" class="logo">
+        <img src="data:image/png;base64,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" alt="">
+      </a>
+
+      <div class="navbar">
+        <a href="#home">home</a>
+        <a href="#about">about</a>
+        <a href="#menu">menu</a>
+        <a href="#product">product</a>
+        <a href="#review">review</a>
+        <a href="#contect">contect</a>
+        <a href="#blog">blog</a>
+      
       </div>
-      <div class="swiper-slide">
-        <img src="https://swiperjs.com/demos/images/nature-2.jpg" />
+
+      <div class="icons">
+        <div class="search-btn"><i class="ri-search-line"></i></div>
+        <div class="cart-btn"><i class="ri-shopping-cart-2-fill"></i></div>
+        <div class="menu-btn"><i class="ri-menu-line"></i></div>
       </div>
-      <div class="swiper-slide">
-        <img src="https://swiperjs.com/demos/images/nature-3.jpg" />
+
+      <div class="search-form">
+        <input type="text" id="search-box" placeholder="search here...">
+        <label for="search-box" class="ri-search-line"></label>
+        
       </div>
-      <div class="swiper-slide">
-        <img src="https://swiperjs.com/demos/images/nature-4.jpg" />
+
+
+
+      <!-- cart-container start -->
+
+
+      <div class="cart-item-container">
+        <div class="cart-item">
+          <div class="cross"><i class="ri-close-fill"></i></div>
+          <img src="https://images.unsplash.com/photo-1566550190349-0e08628941ab?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTl8fGZvb2QlMjBwaG90b3xlbnwwfHwwfHx8MA%3D%3D" alt="">
+              <div class="content">
+                  <h3>cart item 01</h3>
+              <div class="prize">$12.00/-</div>
+          </div>
+        </div>
+
+        <div class="cart-item">
+          <div class="cross"><i class="ri-close-fill"></i></div>
+          <img src="https://images.unsplash.com/photo-1566550190349-0e08628941ab?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTl8fGZvb2QlMjBwaG90b3xlbnwwfHwwfHx8MA%3D%3D" alt="">
+  <div class="content">
+    <h3>cart item 02</h3>
+    <div class="prize">$14.00/-</div>
+  </div>
+        </div>
+
+        <div class="cart-item">
+          <div class="cross"><i class="ri-close-fill"></i></div>
+          <img src="https://images.unsplash.com/photo-1566550190349-0e08628941ab?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTl8fGZvb2QlMjBwaG90b3xlbnwwfHwwfHx8MA%3D%3D" alt="">
+              <div class="content">
+                  <h3>cart item 01</h3>
+              <div class="prize">$12.00/-</div>
+          </div>
+        </div>
+
+        <div class="cart-item">
+          <div class="cross"><i class="ri-close-fill"></i></div>
+          <img src="https://images.unsplash.com/photo-1566550190349-0e08628941ab?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTl8fGZvb2QlMjBwaG90b3xlbnwwfHwwfHx8MA%3D%3D" alt="">
+              <div class="content">
+                  <h3>cart item 01</h3>
+              <div class="prize">$12.00/-</div>
+          </div>
+        </div>
+        <a href="#" class="btn">click here!!</a>
       </div>
-      <div class="swiper-slide">
-        <img src="https://swiperjs.com/demos/images/nature-5.jpg" />
+
+
+  </header>
+  
+
+  <!-- home section start -->
+
+  <section class="home" id="home">
+    <div class="content">
+      <h3>fresh coffee in the morning</h3>
+<p>A coffeehouse or café is an establishment that primarily serves coffee, as well as other beverages. Historically, cafés have been important social gathering places in Europe, and continue to be venues of social interaction today.</p>     
+ <a href="#" class="btn1">get your now</a>
+    </div>
+  </section>
+
+
+  <!-- menu section start -->
+
+  <section class="about" id="about">
+
+    <h1 class="heading"><span>about</span> us</h1>
+
+    <div class="row">
+      <div class="image">
+        <img src="https://th.bing.com/th/id/OIP.32z5Atplt6pasfTCAb7MzQHaDN?w=306&h=180&c=7&r=0&o=5&pid=1.7" alt="">
       </div>
-      <div class="swiper-slide">
-        <img src="https://swiperjs.com/demos/images/nature-6.jpg" />
-      </div>
-      <div class="swiper-slide">
-        <img src="https://swiperjs.com/demos/images/nature-7.jpg" />
-      </div>
-      <div class="swiper-slide">
-        <img src="https://swiperjs.com/demos/images/nature-8.jpg" />
-      </div>
-      <div class="swiper-slide">
-        <img src="https://swiperjs.com/demos/images/nature-9.jpg" />
+      <div class="content">
+        <h3>what make our coffee special?</h3>
+        <p>Specialty coffee has gained immense popularity for its unique flavor and improved quality. There are large varieties of coffee trending every day due to the widened demand. Still, specialty coffee holds its place for its distinct processing inside the animal digestive system</p>
+        <p>Coffee is a beverage brewed from roasted coffee beans. Darkly colored, bitter, and slightly acidic, coffee has a stimulating effect on humans, primarily due to its caffeine content. It has the highest sales in the world market for hot drinks.</p>
+        <a href="#"class="btn2">learn more</a>
       </div>
     </div>
-    <div class="swiper-pagination"></div>
-  </div>
 
-  <!-- Swiper JS -->
-  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  </section>
 
-  <!-- Initialize Swiper -->
-  <script>
-    var swiper = new Swiper(".mySwiper", {
-      effect: "coverflow",
-      grabCursor: true,
-      centeredSlides: true,
-      slidesPerView: "auto",
-      coverflowEffect: {
-        rotate: 50,
-        stretch: 0,
-        depth: 100,
-        modifier: 1,
-        slideShadows: true,
-      },
-      loop:true,
-      autoplay:{
-        delay: 2000,
-        // disableOnInteraction: false,
-      },
-    });
-  </script>
+  <!-- menu section starts -->
+
+  <section class="menu" id="menu">
+
+    <h1 class="heading">our <span>menu</span> </h1>
+    <div class="box-cantainer">
+      <div class="box">
+        <img src="https://plus.unsplash.com/premium_photo-1678198786424-c2cc6593f59c?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8aWNlJTIwY3JlYW18ZW58MHx8MHx8fDA%3D" alt="">
+        <h3>testy and healty</h3>
+        <div class="price">$13.0/- <span>$15.0/-</span></div>
+        <a href="#" class="btn3">add to cart</a>
+
+      </div>
+      <div class="box">
+        <img src="https://images.unsplash.com/photo-1530373239216-42518e6b4063?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8Y29sZCUyMGNvZmZlZXxlbnwwfHwwfHx8MA%3D%3D" alt="">
+        <h3>testy and healty</h3>
+        <div class="price">$12.0/- <span>$15.0/-</span></div>
+        <a href="#" class="btn3">add to cart</a>
+
+      </div>
+      <div class="box">
+        <img src="https://images.unsplash.com/photo-1530629159325-9c378fc150b9?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTR8fGNvbGQlMjBjb2ZmZWV8ZW58MHx8MHx8fDA%3D" alt="">
+        <h3>testy and healty</h3>
+        <div class="price">$9.00/- <span>$15.0/-</span></div>
+        <a href="#" class="btn3">add to cart</a>
+
+      </div>
+      <div class="box">
+        <img src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8YmxhY2slMjBjb2ZmZWV8ZW58MHx8MHx8fDA%3D" alt="">
+        <h3>testy and healty</h3>
+        <div class="price">$10.0/- <span>$12.0/-</span></div>
+        <a href="#" class="btn3">add to cart</a>
+
+      </div>
+      <div class="box">
+        <img src="https://images.unsplash.com/photo-1497034825429-c343d7c6a68f?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8aWNlJTIwY3JlYW18ZW58MHx8MHx8fDA%3D" alt="">
+        <h3>testy and healty</h3>
+        <div class="price">$10.0/- <span>$14.0/-</span></div>
+        <a href="#" class="btn3">add to cart</a>
+
+      </div>
+      <div class="box">
+        <img src="https://images.unsplash.com/photo-1563805042-7684c019e1cb?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fGljZSUyMGNyZWFtfGVufDB8fDB8fHww" alt="">
+        <h3>testy and healty</h3>
+        <div class="price">$12.0/- <span>$17.0/-</span></div>
+        <a href="#" class="btn3">add to cart</a>
+
+      </div>
+      
+    </div>
+
+  </section>
+
+  <!-- menu section end -->
+
+
+  <!-- product section start -->
+
+  <section class="product" id="product">
+    <h3 class="heading"> our <span>product</span></h3>
+    
+    <div class="box-container1">
+      <div class="boxes">
+        <div class="icons1">
+          <a href="#" class="ri-shopping-cart-2-fill"></a>
+          <a href="#" class="ri-heart-fill"></a>
+          <a href="#" class="ri-eye-fill"></a>
+        </div>
+        <img src="https://media.istockphoto.com/id/458905727/photo/bag-of-coffee-beans.jpg?s=612x612&w=0&k=20&c=goUdix1ONExPf92gpgmxXvhTNXkmymktWkQ5NLguXTc=" alt="">
+
+         <div class="content">
+          <h4>fresh coffee</h4>
+          <div class="star">
+            <i class="ri-star-fill"></i>
+            <i class="ri-star-fill"></i>
+            <i class="ri-star-fill"></i>
+            <i class="ri-star-fill"></i>
+            <i class="ri-star-half-line"></i>
+          </div>
+
+          <div class="price">$10.00/- <span> $15.00/-</span></div>
+         </div>
+
+      </div>
+
+      <div class="boxes">
+        <div class="icons1">
+          <a href="#" class="ri-shopping-cart-2-fill"></a>
+          <a href="#" class="ri-heart-fill"></a>
+          <a href="#" class="ri-eye-fill"></a>
+        </div>
+         <img src="https://media.istockphoto.com/id/1278975056/photo/brown-kraft-paper-pouch-bags-with-coffee-beans-top-view-with-shadow-isolated-on-white.jpg?s=612x612&w=0&k=20&c=G06ZK_B1ekUp_hEkw5J7T3fezWQgJG2neJI2cPNAsNk=" alt="">
+
+         <div class="content">
+          <h4>fresh coffee</h4>
+          <div class="star">
+            <i class="ri-star-fill"></i>
+            <i class="ri-star-fill"></i>
+            <i class="ri-star-fill"></i>
+            <i class="ri-star-fill"></i>
+            <i class="ri-star-half-line"></i>
+          </div>
+
+          <div class="price">$12.00/- <span> $16.00/-</span></div>
+         </div>
+
+      </div>
+
+      <div class="boxes">
+        <div class="icons1">
+          <a href="#" class="ri-shopping-cart-2-fill"></a>
+          <a href="#" class="ri-heart-fill"></a>
+          <a href="#" class="ri-eye-fill"></a>
+        </div>
+        <img src="https://media.istockphoto.com/id/2149270350/photo/a-kraft-paper-bag-with-coffee-beans-for-viewing-with-a-highlighted-shadow-lies-on-a-white.jpg?s=612x612&w=0&k=20&c=2nf1Ws81EhzvGWn05u166JOAoD0vM2XaUIR7dtLiT7o=" alt="">
+
+         <div class="content">
+          <h4>fresh coffee</h4>
+          <div class="star">
+            <i class="ri-star-fill"></i>
+            <i class="ri-star-fill"></i>
+            <i class="ri-star-fill"></i>
+            <i class="ri-star-fill"></i>
+            <i class="ri-star-half-line"></i>
+          </div>
+
+          <div class="price">$11.00/- <span> $14.00/-</span></div>
+         </div>
+
+      </div>
+
+    </div>
+  </section>
+     
+
+  <!-- product section end -->
+
+
+  <!-- review section start -->
+
+  <section class="review" id="review">
+
+    <h3 class="heading"> customer <span>review</span></h3>
+
+    <div class="box-container1">
+      <div class="boxes">
+        <div class="star">
+            <i class="ri-star-fill"></i>
+            <i class="ri-star-fill"></i>
+            <i class="ri-star-fill"></i>
+            <i class="ri-star-fill"></i>
+            <i class="ri-star-half-line"></i>
+          </div>
+          
+          <!-- <img class="quote" src="data:image/png;base64,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" alt=""> -->
+          <p>Food is pretty good, some italian classics and some twists, and for their prices it’s 100% worth it.</p>
+          <h4>miaa saif</h4>
+          <div class="image">
+            <img  src="https://images.unsplash.com/photo-1676477208892-3a59818985bd?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTl8fHBvdHJhaXQlMjB3b21hbnxlbnwwfHwwfHx8MA%3D%3D" alt="">
+          </div>
+      </div>
+
+      <div class="boxes">
+        <div class="star">
+            <i class="ri-star-fill"></i>
+            <i class="ri-star-fill"></i>
+            <i class="ri-star-fill"></i>
+            <i class="ri-star-fill"></i>
+            <i class="ri-star-half-line"></i>
+          </div>
+        <p> It’s a great experience. The ambiance is very welcoming and charming. Amazing wines, food and service. Staff are extremely knowledgeable and make great recommendations</p>
+        <h4>miara semvan</h4>
+
+        <div class="image">
+          <img src="https://images.unsplash.com/photo-1647857341173-ba5b94fb4094?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTJ8fHBvdHJhaXQlMjBwaG90b3xlbnwwfHwwfHx8MA%3D%3D" alt="">
+        
+        </div>
+      </div>
+
+      <div class="boxes">
+        <div class="star">
+            <i class="ri-star-fill"></i>
+            <i class="ri-star-fill"></i>
+            <i class="ri-star-fill"></i>
+            <i class="ri-star-fill"></i>
+            <i class="ri-star-half-line"></i>
+          </div>
+        <p>beautiful presentation, wide wine list and wonderful dessert. I recommend to everyone! I would like to come back here again and again.</p>
+        <h4>khalid saikh</h4>
+
+        <div class="image">
+          <img src="https://images.unsplash.com/photo-1632653581056-1dad9ec64170?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTV8fHBvdHJhaXQlMjBwaG90b3xlbnwwfHwwfHx8MA%3D%3D" alt="">
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+
+
+  <!-- review section end -->
+
+
+  <!-- contect section start -->
+
+
+  <section class="contect" id="contect">
+
+    <h3 class=" heading "> contect <span>us</span></h3>
+     <div class="row">
+      <iframe class="map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3679.323061538346!2d75.89515827483488!3d22.75338907936334!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3962fd0dc9c7ffed%3A0x770321c581943408!2sMumbasa%20Cafe!5e0!3m2!1sen!2sin!4v1719749397944!5m2!1sen!2sin" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+
+      <form action="">
+        <h3>get in touch</h3>
+        <div class="inputbox">
+          <span><i class="ri-user-fill"></i></span>
+          <input type="text" placeholder="name">
+        </div>
+
+        <div class="inputbox">
+          <span><i class="ri-mail-fill"></i></span>
+          <input type="email" placeholder="email">
+        </div>
+
+        <div class="inputbox">
+          <span><i class="ri-phone-fill"></i></span>
+          <input type="number" placeholder="number">
+        </div>
+
+        <input type="submit" class="btn1" value="contect us">
+
+      </form>
+
+     </div>
+    </div>  
+
+  </section>
+
+
+  <!-- contect section end -->
+
+
+
+  <!-- blog section start -->
+
+  <section class="blog" id="blog">
+
+    <h3 class="heading"> our <span>blog</span></h3>
+
+    <div class="box-container1">
+
+      <div class="box">
+        <div class="image">
+        <!-- <img src="https://th.bing.com/th/id/OIP.8OYBVz0ukANz1-21ZgIhkwHaFY?w=317&h=185&c=7&r=0&o=5&pid=1.7" alt=""> -->
+        <img src="https://th.bing.com/th/id/OIP.aO2sg_qcMjcIMlU7Q7jKagHaE7?w=270&h=180&c=7&r=0&o=5&pid=1.7" alt="">
+        </div>
+        <div class="content">
+        <h3>testy and refressing coffee</h3>
+        <span>by admin / 21st may, 2019 </span>
+        <p>Coffee is a beverage brewed from roasted <br> coffee beans.</p>
+        <div class="btn1">read more</div>
+      </div>
+      </div>
+
+
+      <div class="box">
+        <div class="image">
+        <img src="https://th.bing.com/th/id/OIP.8OYBVz0ukANz1-21ZgIhkwHaFY?w=317&h=185&c=7&r=0&o=5&pid=1.7" alt="">
+        </div>
+        <div class="content">
+        <h3>testy and refressing coffee</h3>
+        <span>by admin / 21st may, 2019 </span>
+        <p>Coffee is a beverage brewed from roasted <br> coffee beans.</p>
+        <div class="btn1">read more</div>
+      </div>
+      </div>
+
+      <div class="box">
+        <div class="image">
+          <img src="https://th.bing.com/th/id/OIP.oNyjNw538KE1wICXdfXpqQHaE8?w=245&h=180&c=7&r=0&o=5&pid=1.7" alt="">
+        <!-- <img src="https://th.bing.com/th/id/OIP.8OYBVz0ukANz1-21ZgIhkwHaFY?w=317&h=185&c=7&r=0&o=5&pid=1.7" alt=""> -->
+        </div>
+        <div class="content">
+        <h3>testy and refressing coffee</h3>
+        <span>by admin / 21st may, 2019 </span>
+        <p>Coffee is a beverage brewed from roasted <br> coffee beans.</p>
+        <div class="btn1">read more</div>
+      </div>
+      </div>
+      
+
+    </div>
+
+
+  </section>
+
+  <!-- blog section end -->
+
+
+  <!-- footer setion start -->
+
+  <section class="footer" id="footer">
+
+    <div class="shar">
+      <i class="ri-facebook-circle-fill"></i>
+      <i class="ri-youtube-fill"></i>
+      <i class="ri-twitter-fill"></i>
+      <i class="ri-instagram-fill"></i>
+      <i class="ri-linkedin-box-fill"></i>
+    </div>
+
+    <div class="links">
+      <a href="#home">home</a>
+      <a href="#menu">menu</a>
+      <a href="#about">about</a>
+      <a href="#product">product</a>
+      <a href="#contect">contect</a>
+      <a href="#blog">blogs</a>
+      
+    </div>
+
+    <div class="credit"> credit by <span>mr. aditya s</span> | all right reserved </div>
+
+
+
+  </section>
+
+
+
+
+  <!-- footer setion end -->
+
+
+
+
+
+
+
+
+
+
+
+  <script src="script.js"></script>
 </body>
-
 </html>

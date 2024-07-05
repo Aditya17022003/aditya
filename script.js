@@ -1,14 +1,28 @@
-var swiper = new Swiper(".mySwiper", {
-    effect: "coverflow",
-    grabCursor: true,
-    centeredSlides: true,
-    slidesPerView: "auto",
-    coverflowEffect: {
-      rotate: 50,
-      stretch: 0,
-      depth: 100,
-      modifier: 1,
-      slideShadows: true,
-    },
+let searchform = document.querySelector(".search-form");
+document.querySelector(".search-btn").onclick=() =>{
+    searchform.classList.toggle('active');
+    navbar.classList.remove('active');
+    cart.classList.remove('active');
+
+
+
+}
+
+
+let navbar = document.querySelector(".navbar");
+document.querySelector(".menu-btn").onclick=()=>{
+    navbar.classList.toggle('active');
+    searchform.classList.remove('active');
+    cart.classList.remove('active');
     
-  });
+
+}
+
+let cart = document.querySelector(".cart-item-container");
+document.querySelector(".cart-btn").onclick=()=>{
+    cart.classList.toggle('active');
+    searchform.classList.remove('active');
+    navbar.classList.remove('active');
+
+
+}
